@@ -1,15 +1,18 @@
-function buatSakura() {
-    const img = document.createElement("img");
-    img.src = "https://cdn-icons-png.flaticon.com/512/7656/7656408.png"; 
-    img.className = "sakura";
+function createSakura() {
+    const sakura = document.createElement("img");
+    sakura.src = "https://i.imgur.com/9E3V7iV.png"; 
+    sakura.classList.add("sakura");
 
-    img.style.left = Math.random() * window.innerWidth + "px";
+    // posisi random di layar
+    sakura.style.left = Math.random() * window.innerWidth + "px";
 
-    document.body.appendChild(img);
+    document.body.appendChild(sakura);
 
+    // hapus setelah jatuh
     setTimeout(() => {
-        img.remove();
-    }, 6000);
+        sakura.remove();
+    }, 7000);
 }
 
-setInterval(buatSakura, 300);
+// bikin 50 bunga jatuh setiap beberapa waktu
+setInterval(createSakura, 200);
