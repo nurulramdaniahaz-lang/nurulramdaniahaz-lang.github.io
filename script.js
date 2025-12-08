@@ -1,6 +1,6 @@
 function createSakura() {
     const sakura = document.createElement("img");
-    sakura.src = "https://cdn-icons-png.flaticon.com/512/7659/7659689.png"; // 🌸
+    sakura.src = 🌸
     sakura.classList.add("sakura");
 
     // posisi random
