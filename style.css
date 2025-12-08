@@ -1,22 +1,23 @@
-/* Animasi bunga sakura jatuh */
+/* Sakura Falling Animation */
 .sakura {
     position: fixed;
     top: -20px;
-    width: 12px;
-    height: 12px;
+    width: 15px;
+    height: 15px;
     background: pink;
+    border-radius: 50%;
     opacity: 0.8;
-    border-radius: 70% 100% 70% 100%;
-    animation: fall 6s linear infinite, sway 3s ease-in-out infinite;
+    box-shadow: 0 0 5px rgba(255, 182, 193, 0.8);
+    animation: fall 7s linear infinite, sway 3s ease-in-out infinite;
     pointer-events: none;
 }
 
-/* Posisi awal di berbagai lebar layar */
-.sakura:nth-child(1) { left: 5%; animation-delay: 0s; }
-.sakura:nth-child(2) { left: 25%; animation-delay: 1s; }
-.sakura:nth-child(3) { left: 45%; animation-delay: 0.5s; }
-.sakura:nth-child(4) { left: 65%; animation-delay: 2s; }
-.sakura:nth-child(5) { left: 85%; animation-delay: 1.5s; }
+/* Posisi awal */
+.sakura:nth-child(1) { left: 10%; animation-duration: 8s; }
+.sakura:nth-child(2) { left: 30%; animation-duration: 5.5s; }
+.sakura:nth-child(3) { left: 50%; animation-duration: 7.2s; }
+.sakura:nth-child(4) { left: 70%; animation-duration: 6s; }
+.sakura:nth-child(5) { left: 90%; animation-duration: 9s; }
 
 /* Jatuh ke bawah */
 @keyframes fall {
@@ -24,70 +25,9 @@
     100% { transform: translateY(100vh) rotate(360deg); }
 }
 
-/* Goyang-goyang */
+/* Goyang kanan-kiri */
 @keyframes sway {
     0% { transform: translateX(0px); }
-    50% { transform: translateX(30px); }
+    50% { transform: translateX(25px); }
     100% { transform: translateX(0px); }
-}
-
-
-/* Background pastel aesthetic */
-body {
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #ffe4ec, #e8eaff, #e3ffe8);
-    overflow-x: hidden;
-    font-family: Arial, sans-serif;
-}
-
-/* Card container */
-.container {
-    max-width: 600px;
-    margin: 150px auto 50px;
-    padding: 30px;
-    background: rgba(255,255,255,0.75);
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
-}
-
-h1 {
-    color: #aa4f73;
-    font-size: 32px;
-    margin-bottom: 10px;
-}
-
-p {
-    color: #444;
-    font-size: 20px;
-}
-/* Sakura Falling Animation */
-.sakura {
-    position: fixed;
-    top: -10px;
-    width: 15px;
-    height: 15px;
-    background: pink;
-    border-radius: 50%;
-    box-shadow: 0 0 5px rgba(255, 182, 193, 0.8);
-    animation: fall 6s linear infinite;
-    opacity: 0.8;
-}
-
-.sakura:nth-child(1) { left: 10%; animation-duration: 8s; }
-.sakura:nth-child(2) { left: 30%; animation-duration: 5s; }
-.sakura:nth-child(3) { left: 50%; animation-duration: 7s; }
-.sakura:nth-child(4) { left: 70%; animation-duration: 6s; }
-.sakura:nth-child(5) { left: 90%; animation-duration: 9s; }
-
-@keyframes fall {
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0.3;
-    }
 }
