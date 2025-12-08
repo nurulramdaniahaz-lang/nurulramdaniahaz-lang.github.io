@@ -1,18 +1,14 @@
 function createSakura() {
-    const sakura = document.createElement("img");
-    sakura.src = 🌸
+    const sakura = document.createElement("div");
     sakura.classList.add("sakura");
 
-    // posisi random
-    sakura.style.left = Math.random() * window.innerWidth + "px";
+    sakura.style.left = Math.random() * 100 + "vw";
+    sakura.style.animationDuration = (5 + Math.random() * 5) + "s";
+    sakura.style.opacity = Math.random();
 
     document.body.appendChild(sakura);
 
-    // hapus setelah animasi selesai
-    setTimeout(() => {
-        sakura.remove();
-    }, 7000);
+    setTimeout(() => sakura.remove(), 10000);
 }
 
-// buat bunga setiap 300ms
 setInterval(createSakura, 300);
