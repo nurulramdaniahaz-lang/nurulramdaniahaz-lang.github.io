@@ -62,3 +62,32 @@ p {
     color: #444;
     font-size: 20px;
 }
+/* Sakura Falling Animation */
+.sakura {
+    position: fixed;
+    top: -10px;
+    width: 15px;
+    height: 15px;
+    background: pink;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(255, 182, 193, 0.8);
+    animation: fall 6s linear infinite;
+    opacity: 0.8;
+}
+
+.sakura:nth-child(1) { left: 10%; animation-duration: 8s; }
+.sakura:nth-child(2) { left: 30%; animation-duration: 5s; }
+.sakura:nth-child(3) { left: 50%; animation-duration: 7s; }
+.sakura:nth-child(4) { left: 70%; animation-duration: 6s; }
+.sakura:nth-child(5) { left: 90%; animation-duration: 9s; }
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0.3;
+    }
+}
