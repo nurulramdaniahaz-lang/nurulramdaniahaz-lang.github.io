@@ -1,28 +1,37 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #f2f2f2;
-  margin: 0;
-  padding: 20px;
-  color: #333;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #89f7fe, #66a6ff);
+    margin: 0;
+    padding: 40px 0;
+    color: #333;
+}
+
+/* Floating card */
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 40px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    transform: translateY(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efek melayang ketika hover */
+.container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
-  font-size: 36px;
-  text-align: center;
-  margin-top: 40px;
-  color: #222;
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #222;
 }
 
 p {
-  font-size: 20px;
-  text-align: center;
-}
-
-.container {
-  max-width: 600px;
-  margin: auto;
-  padding: 30px;
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-size: 22px;
+    text-align: center;
 }
