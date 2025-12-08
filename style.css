@@ -21,11 +21,11 @@ body {
     width: 30px;
     height: 30px;
     pointer-events: none;
-    animation: turun 6s linear forwards;
+    animation: fall 7s linear forwards;
+    z-index: 9999;
 }
 
-/* Animasi jatuh */
-@keyframes turun {
+@keyframes fall {
     0% {
         transform: translateY(0) rotate(0deg);
         opacity: 1;
