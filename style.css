@@ -1,4 +1,4 @@
-/* ANIMASI BUNGA SAKURA JATUH */
+/* Animasi bunga sakura jatuh */
 .sakura {
     position: fixed;
     top: -10px;
@@ -11,22 +11,40 @@
     pointer-events: none;
 }
 
-/* posisi random */
+/* Posisi awal random */
 .sakura:nth-child(1) { left: 10%; animation-delay: 0s; }
 .sakura:nth-child(2) { left: 30%; animation-delay: 1s; }
 .sakura:nth-child(3) { left: 50%; animation-delay: 0.5s; }
 .sakura:nth-child(4) { left: 70%; animation-delay: 2s; }
 .sakura:nth-child(5) { left: 90%; animation-delay: 1.5s; }
 
-/* jatuh */
+/* Gerakan jatuh */
 @keyframes fall {
     0%   { transform: translateY(-10px) rotate(0deg); }
     100% { transform: translateY(110vh) rotate(360deg); }
 }
 
-/* goyang kiri kanan */
+/* Goyang kiri-kanan */
 @keyframes sway {
     0%   { transform: translateX(0px); }
     50%  { transform: translateX(20px); }
     100% { transform: translateX(0px); }
+}
+
+/* Tambahkan gaya background / container supaya terlihat lebih aesthetic */
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #ffe4ec, #e8eaff, #e3ffe8);
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 600px;
+    margin: 150px auto 50px;
+    padding: 30px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
