@@ -1,40 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Website Sakura</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sakura Falling Effect</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- Sakura Animation Script -->
-<script>
-function createSakura() {
-    const sakura = document.createElement("div");
-    sakura.classList.add("sakura");
+    <!-- Tempat jatuhnya sakura -->
+    <div id="sakura-container"></div>
 
-    sakura.style.left = Math.random() * window.innerWidth + "px";
-
-    let size = Math.random() * 12 + 10;
-    sakura.style.width = size + "px";
-    sakura.style.height = size + "px";
-
-    sakura.style.animationDuration = (Math.random() * 3 + 5) + "s";
-
-    document.body.appendChild(sakura);
-
-    setTimeout(() => {
-        sakura.remove();
-    }, 8000);
-}
-
-setInterval(createSakura, 300);
-</script>
-
-<div class="container">
-    <h1>Selamat datang uhuuuyyyyyyyyyy.</h1>
-    <p>anjayyyyyy 🌸</p>
-</div>
-
+    <script src="script.js"></script>
 </body>
 </html>
