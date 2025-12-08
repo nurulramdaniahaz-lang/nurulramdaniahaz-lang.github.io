@@ -1,18 +1,18 @@
 function createSakura() {
     const sakura = document.createElement("img");
-    sakura.src = "https://pngimg.com/uploads/cherry_blossom/cherry_blossom_PNG16.png"; 
+    sakura.src = "https://cdn-icons-png.flaticon.com/512/7659/7659689.png"; // gambar kelopak
     sakura.classList.add("sakura");
 
-    // posisi random di layar
+    // posisi random
     sakura.style.left = Math.random() * window.innerWidth + "px";
 
     document.body.appendChild(sakura);
 
-    // hapus setelah jatuh
+    // hapus setelah animasi selesai
     setTimeout(() => {
         sakura.remove();
     }, 7000);
 }
 
-// bikin 50 bunga jatuh setiap beberapa waktu
-setInterval(createSakura, 200);
+// buat bunga setiap 300ms
+setInterval(createSakura, 300);
