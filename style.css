@@ -1,7 +1,17 @@
+/* Background pastel */
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #ffe6f2, #ffd6e7, #ffeef7);
+    font-family: "Poppins", sans-serif;
+    overflow-x: hidden;
+}
+
 /* Sakura falling animation */
 .sakura {
     position: fixed;
     top: -10px;
+    left: 0;
     width: 15px;
     height: 15px;
     background-image: url('https://i.imgur.com/9E3V7iV.png');
@@ -11,6 +21,7 @@
     animation: fall 7s linear infinite;
 }
 
+/* Sakura animation keyframes */
 @keyframes fall {
     0% {
         transform: translateX(0) rotate(0deg);
@@ -20,4 +31,21 @@
         transform: translateX(100px) translateY(100vh) rotate(360deg);
         opacity: 0.6;
     }
+}
+
+/* Content container */
+.container {
+    text-align: center;
+    padding-top: 100px;
+    color: #d14f8f;
+}
+
+.container h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.container p {
+    font-size: 20px;
 }
