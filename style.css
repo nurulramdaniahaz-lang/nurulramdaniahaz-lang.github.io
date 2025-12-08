@@ -20,13 +20,13 @@
 
 /* jatuh */
 @keyframes fall {
-    0% { transform: translateY(-10px) rotate(0deg); }
+    0%   { transform: translateY(-10px) rotate(0deg); }
     100% { transform: translateY(110vh) rotate(360deg); }
 }
 
 /* goyang kiri kanan */
 @keyframes sway {
-    0% { transform: translateX(0px); }
-    50% { transform: translateX(20px); }
+    0%   { transform: translateX(0px); }
+    50%  { transform: translateX(20px); }
     100% { transform: translateX(0px); }
 }
