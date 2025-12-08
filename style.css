@@ -1,30 +1,37 @@
 body {
     margin: 0;
     padding: 0;
+    background: linear-gradient(#ffd6e8, #ffeef7, #ffd6e8);
     overflow: hidden;
-    background: #ffeef2;
-    font-family: sans-serif;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
 }
 
-/* Sakura img */
+/* tampilan judul */
+.judul {
+    margin-top: 40px;
+    color: #d63384;
+    font-size: 22px;
+}
+
+/* Gambar bunga sakura */
 .sakura {
     position: fixed;
-    top: -10px;
+    top: -50px;
     width: 30px;
     height: 30px;
-    opacity: 0.9;
     pointer-events: none;
-    animation: fall 7s linear forwards;
+    animation: turun 6s linear forwards;
 }
 
 /* Animasi jatuh */
-@keyframes fall {
+@keyframes turun {
     0% {
         transform: translateY(0) rotate(0deg);
         opacity: 1;
     }
     100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0.3;
+        transform: translateY(120vh) rotate(360deg);
+        opacity: 0;
     }
 }
