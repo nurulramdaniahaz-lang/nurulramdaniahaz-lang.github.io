@@ -1,6 +1,6 @@
 function createSakura() {
     const sakura = document.createElement("img");
-    sakura.src = "https://pngimg.com/uploads/sakura/sakura_PNG19665.png"; 
+    sakura.src = "https://pngimg.com/uploads/cherry_blossom/cherry_blossom_PNG16.png"; 
     sakura.classList.add("sakura");
 
     // posisi random di layar
