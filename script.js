@@ -1,15 +1,15 @@
-function createSakura() {
-    const sakura = document.createElement("img");
-    sakura.src = "https://cdn-icons-png.flaticon.com/512/7656/7656408.png";
-    sakura.classList.add("sakura");
+function buatSakura() {
+    const img = document.createElement("img");
+    img.src = "https://cdn-icons-png.flaticon.com/512/7656/7656408.png"; 
+    img.className = "sakura";
 
-    sakura.style.left = Math.random() * window.innerWidth + "px";
+    img.style.left = Math.random() * window.innerWidth + "px";
 
-    document.body.appendChild(sakura);
+    document.body.appendChild(img);
 
     setTimeout(() => {
-        sakura.remove();
-    }, 7000);
+        img.remove();
+    }, 6000);
 }
 
-setInterval(createSakura, 400);
+setInterval(buatSakura, 300);
