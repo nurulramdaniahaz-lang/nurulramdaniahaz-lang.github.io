@@ -1,90 +1,29 @@
-/* ===== Background pastel lembut ===== */
 body {
-    font-family: "Poppins", sans-serif;
-    background: linear-gradient(135deg, #ffe4ec, #e8eaff, #e3ffe8);
-    background-size: 300% 300%;
-    animation: pastelMove 12s ease infinite;
-
-    margin: 0;
-    padding: 30px;
-    color: #444;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #fde2e4, #fad2e1, #e9e2ff);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Animasi background bergerak lembut */
-@keyframes pastelMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* ===== Card gaya pastel aesthetic ===== */
 .container {
-    max-width: 650px;
-    margin: auto;
+    background: white;
     padding: 30px;
-
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(12px);
-
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-
-    animation: slideFade 1.2s ease forwards;
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-/* Card muncul lembut */
-@keyframes slideFade {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ===== Heading pastel ===== */
-h1, h2 {
+    border-radius: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     text-align: center;
-    color: #6b5de5; /* pastel purple */
-    margin-top: 0;
-    font-weight: 600;
-}
 
-/* ===== Tombol pastel aesthetic ===== */
-button, .btn {
-    display: inline-block;
-    padding: 12px 20px;
-    background: #ffc9de;   /* pink pastel */
-    color: #444;
-    border-radius: 15px;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-
-    transition: 0.3s;
-}
-
-button:hover, .btn:hover {
-    background: #ffd9e8;
-    transform: translateY(-3px);
-}
-
-/* ===== Paragraf ===== */
-p {
-    line-height: 1.7;
-    color: #555;
-    font-size: 16px;
-}
-
-/* ===== Card melayang lembut ===== */
-.float {
-    animation: float 4s ease-in-out infinite;
+    /* animasi melayang */
+    animation: float 3s ease-in-out infinite;
 }
 
 @keyframes float {
-    0%   { transform: translateY(0); }
-    50%  { transform: translateY(-8px); }
-    100% { transform: translateY(0); }
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+h1, p {
+    color: #444;
 }
