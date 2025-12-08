@@ -7,13 +7,33 @@
 </head>
 <body>
 
-  <!-- Sakura petals -->
-  <div class="sakura"></div>
-  <div class="sakura"></div>
-  <div class="sakura"></div>
-  <div class="sakura"></div>
-  <div class="sakura"></div>
+  <script>
+function createSakura() {
+    const sakura = document.createElement("div");
+    sakura.classList.add("sakura");
 
+    // posisi random
+    sakura.style.left = Math.random() * window.innerWidth + "px";
+
+    // ukuran random
+    let size = Math.random() * 12 + 10; 
+    sakura.style.width = size + "px";
+    sakura.style.height = size + "px";
+
+    // durasi jatuh random
+    sakura.style.animationDuration = (Math.random() * 3 + 5) + "s";
+
+    document.body.appendChild(sakura);
+
+    // hapus setelah jatuh
+    setTimeout(() => {
+        sakura.remove();
+    }, 8000);
+}
+
+// buat bunga jatuh terus
+setInterval(createSakura, 300);
+  </script>
   <!-- Content utama -->
   <div class="container">
     <h1>Selamat datang uhuuyyyyyyyyy.</h1>
