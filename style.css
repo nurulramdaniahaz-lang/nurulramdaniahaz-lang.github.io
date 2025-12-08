@@ -16,7 +16,7 @@ body {
 
 /* Gambar bunga sakura */
 .sakura {
-    position: fixed;
+    position: absolute;
     top: -50px;
     width: 30px;
     height: 30px;
