@@ -68,7 +68,7 @@ body {
     width: 25px;
     height: 25px;
     top: -60px;
-    background-image: url('🌸');
+    background-image: ('🌸');
     background-size: cover;
     pointer-events: none;
     animation: fall 7s linear infinite;
