@@ -2,51 +2,53 @@ body {
     margin: 0;
     padding: 0;
     background: linear-gradient(#ffd6e8, #ffeef7, #ffd6e8);
-    overflow: hidden;
+    overflow-x: hidden;
     font-family: 'Poppins', sans-serif;
 }
 
+/* Container */
 .container {
     position: relative;
-    z-index: 1000;
     text-align: center;
     padding-top: 60px;
+    z-index: 1000;
 }
 
 .judul {
     font-size: 38px;
-    color: #d63384;
     font-weight: 600;
+    color: #d63384;
     margin-bottom: 5px;
 }
 
 .subjudul {
-    font-size: 16px;
-    color: #7d3e63;
+    font-size: 18px;
+    color: #773d63;
     margin-bottom: 25px;
 }
 
-/* Card Aesthetic */
+/* Card */
 .card {
     width: 300px;
     margin: auto;
     background: white;
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     animation: fadeIn 1.5s ease;
 }
 
-.card .foto {
+.card_foto {
     width: 120px;
+    height: 120px;
     border-radius: 100%;
     margin-bottom: 10px;
 }
 
 .btn {
     margin-top: 10px;
-    border: none;
     background: #d63384;
+    border: none;
     color: white;
     padding: 10px 20px;
     border-radius: 25px;
@@ -66,13 +68,14 @@ body {
     width: 25px;
     height: 25px;
     top: -60px;
-    background-image: url('https://i.ibb.co/LpDDy3k/sakura.png');
+    background-image: url('https://i.ibb.co/vJxKcZV/sakura.png');
     background-size: cover;
     pointer-events: none;
     animation: fall 7s linear infinite;
     z-index: 1;
 }
 
+/* Animasi jatuh */
 @keyframes fall {
     0% {
         transform: translateY(0) rotate(0deg);
@@ -82,4 +85,10 @@ body {
         transform: translateY(110vh) rotate(360deg);
         opacity: 0;
     }
+}
+
+/* Fade in */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
 }
