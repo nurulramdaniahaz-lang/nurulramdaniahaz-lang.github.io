@@ -62,13 +62,13 @@ body {
     transform: scale(1.05);
 }
 
-/* Sakura effect */
+/* Sakura effect */🌸
 .sakura {
     position: fixed;
     width: 25px;
     height: 25px;
     top: -60px;
-    background-image: url('https://i.ibb.co/vJxKcZV/sakura.png');
+    background-image: url('https://i.ibb.co/vJxKcZV/sakura.png');🌸🌸
     background-size: cover;
     pointer-events: none;
     animation: fall 7s linear infinite;
