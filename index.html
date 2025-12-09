@@ -1,25 +1,208 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sakura Falling 🌸</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sakura Falling — Demo</title>
+  <style>
+    /* Reset */
+    html,body { height:100%; margin:0; padding:0; }
+    body {
+      overflow:hidden;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, #fefefe 0%, #ffeef7 55%, #ffe0f0 100%);
+      color:#333;
+    }
+    #canvas {
+      position:fixed;
+      left:0;
+      top:0;
+      width:100%;
+      height:100%;
+      pointer-events:none; /* clickable elements remain clickable */
+      z-index:0;
+    }
+    /* optional content on top */
+    .content {
+      position:relative;
+      z-index:2;
+      padding:24px;
+    }
+    .card {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(6px);
+      margin: 40px auto;
+      max-width:900px;
+      border-radius:12px;
+      padding:24px;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.08);
+    }
+    h1{ margin:0 0 8px 0; font-size:28px; }
+    p{ margin:0; opacity:0.85; }
+    /* make canvas full device-resolution aware */
+    canvas { display:block; }
+  </style>
 </head>
-
 <body>
+  <canvas id="canvas" aria-hidden="true"></canvas>
 
-    <div class="container">
-        <h1 class="judul">Selamat Datang Uhuuuyyy 🌸</h1>
-        <p class="subjudul">huehehehehe</p>
-
-        <div class="card">
-            <img class="card_foto" src="https://i.ibb.co/x5mLf4D/profile.jpg" />
-            <h2>Nurul Ramdania</h2>
-            <button class="btn">Klik Aku</button>
-        </div>
+  <div class="content">
+    <div class="card">
+      <h1>Efek Bunga Sakura Jatuh</h1>
+      <p>Contoh ini untuk GitHub Pages. README.md di GitHub tidak menjalankan JavaScript — jika kamu ingin menampilkan di README gunakan GIF atau link ke halaman ini.</p>
     </div>
+  </div>
 
-    <script src="script.js"></script>
+  <script>
+  // Sakura falling effect using canvas
+  (function () {
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // device pixel ratio for crisp rendering
+    function resize() {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.floor(window.innerWidth * dpr);
+      canvas.height = Math.floor(window.innerHeight * dpr);
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    window.addEventListener('resize', resize, { passive:true });
+    resize();
+
+    // utility random
+    function rand(min, max) { return Math.random() * (max - min) + min; }
+
+    // Pre-generate several petal shapes (colored) on offscreen canvases for performance
+    const PETAL_COUNT = Math.min(140, Math.floor(window.innerWidth * window.innerHeight / 60000) + 60);
+    const petalImgs = [];
+    function makePetalImage(color1, color2, scale=1) {
+      const off = document.createElement('canvas');
+      off.width = 60 * scale;
+      off.height = 60 * scale;
+      const c = off.getContext('2d');
+      c.translate(off.width/2, off.height/2);
+      c.rotate(-0.2);
+      c.scale(scale, scale);
+      // petal base (simple heart-like path)
+      c.beginPath();
+      c.moveTo(0, -10);
+      c.quadraticCurveTo(12, -20, 20, -6);
+      c.quadraticCurveTo(22, 6, 0, 20);
+      c.quadraticCurveTo(-22, 6, -20, -6);
+      c.quadraticCurveTo(-12, -20, 0, -10);
+      c.closePath();
+
+      // gradient
+      const g = c.createLinearGradient(-20, -20, 20, 20);
+      g.addColorStop(0, color1);
+      g.addColorStop(1, color2);
+      c.fillStyle = g;
+      c.fill();
+
+      // subtle stroke
+      c.lineWidth = 1.2;
+      c.strokeStyle = 'rgba(255,255,255,0.25)';
+      c.stroke();
+
+      return off;
+    }
+
+    // create palette variants
+    const palettes = [
+      ['#ffd6e8', '#ff9fcf'],
+      ['#ffeef7', '#ffb7df'],
+      ['#fff1f6', '#ffb3cc'],
+      ['#ffe0f0', '#ff8fb5']
+    ];
+    for (let i=0;i<8;i++){
+      const p = palettes[i % palettes.length];
+      petalImgs.push(makePetalImage(p[0], p[1], rand(0.8,1.25)));
+    }
+
+    // particle class
+    class Petal {
+      constructor() {
+        this.reset(true);
+      }
+      reset(init=false) {
+        this.x = rand(-50, window.innerWidth + 50);
+        this.y = init ? rand(-window.innerHeight, window.innerHeight) : rand(-60, -10);
+        this.size = rand(0.6, 1.6);
+        this.rotation = rand(0, Math.PI*2);
+        this.rotationSpeed = rand(-0.02, 0.02);
+        this.fallSpeed = rand(0.6, 2.4);
+        this.swing = rand(0.5, 2.4); // horizontal oscillation amplitude
+        this.swingSpeed = rand(0.002, 0.01);
+        this.offset = rand(0, Math.PI*2);
+        this.img = petalImgs[Math.floor(rand(0, petalImgs.length))];
+        // small horizontal drift
+        this.wind = rand(-0.3, 0.8);
+      }
+      update(dt, windFactor) {
+        // apply gravity + wind
+        this.y += this.fallSpeed * dt;
+        const wx = this.wind * dt * windFactor;
+        // smooth oscillation
+        this.x += Math.sin((Date.now()*0.001)*this.swingSpeed + this.offset) * this.swing * 0.5 * dt + wx;
+        this.rotation += this.rotationSpeed * dt * 60;
+        // if out of view, reset
+        if (this.y > window.innerHeight + 80 || this.x < -120 || this.x > window.innerWidth + 120) {
+          this.reset(false);
+          this.y = -40;
+        }
+      }
+      draw(ctx) {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        ctx.globalAlpha = Math.min(1, 0.8 + (this.size - 0.6) * 0.3);
+        ctx.drawImage(this.img, -this.img.width * 0.5 * this.size, -this.img.height * 0.5 * this.size, this.img.width * this.size, this.img.height * this.size);
+        ctx.restore();
+      }
+    }
+
+    // create particles
+    const petals = [];
+    for (let i=0;i<PETAL_COUNT;i++) petals.push(new Petal());
+
+    // simple wind field that changes slowly
+    let windTarget = 1;
+    let wind = 0.6;
+    function updateWind() {
+      windTarget = rand(-1.2, 1.6);
+      setTimeout(updateWind, rand(2500, 8000));
+    }
+    updateWind();
+
+    // animation loop
+    let last = performance.now();
+    function loop(now) {
+      const dt = Math.min(1.2, (now - last) / 16.67); // normalized relative to 60fps (~1)
+      last = now;
+
+      // smooth wind
+      wind += (windTarget - wind) * 0.01 * dt * 60;
+
+      ctx.clearRect(0,0, canvas.width, canvas.height);
+
+      // draw soft overlay (subtle)
+      // ctx.fillStyle = 'rgba(255,250,255,0.02)';
+      // ctx.fillRect(0,0, canvas.width, canvas.height);
+
+      for (let p of petals) {
+        p.update(dt, 1 + Math.abs(wind) * 0.8);
+        p.draw(ctx);
+      }
+
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+
+    // improve quality on orientation change or resize
+    window.addEventListener('orientationchange', resize, {passive:true});
+  })();
+  </script>
 </body>
 </html>
